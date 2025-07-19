@@ -21,11 +21,11 @@ uv add asagi-tables --optional mysql
 ## Cli
 ### Config file
 - Copy `asagi.tpl.toml` to `asagi.toml` and adapt contents as needed
-- If `asagi.toml` is not found, `config.toml` will be tried
+- If `asagi.toml` is not found in the current working directory, `config.toml` will be tried
 	- Same keys used as in [Ayase-Quart](https://github.com/sky-cake/ayase-quart)
 
 ### Available commands
-- `BOARD` is one of more boards
+- `BOARD` is one or more boards
 ```sh
 asagi base table add BOARD
 asagi base table drop BOARD
@@ -46,11 +46,11 @@ asagi side index drop BOARD
 ```
 
 ## Library
-- No side table populate from here
+- No side table populating from here
 - Use your own database connection to execute the rendered templates
 
 ```python
-from asagi import get_template, render_templates
+from asagi_tables import get_template, render_templates
 
 template = get_template('mysql', 'side', 'table', 'backup')
 
