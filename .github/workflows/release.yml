@@ -1,0 +1,41 @@
+name: Build release wheel # uv + setuptools
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # tag glob trigger v0.1.0
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v4
+
+    - name: Install python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install uv (astral-sh/setup-uv)
+      uses: astral-sh/setup-uv@v6
+
+    - name: Install build dependencies # github ubunut/python
+      run: uv sync
+
+    - name: Build wheel with uv
+      run: uv build --wheel
+
+    - name: Create gitHub release + upload wheel(s)
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*.whl
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

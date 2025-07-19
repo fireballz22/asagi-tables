@@ -1,0 +1,39 @@
+# dev custom 
+justfile
+launch.json
+.vscode/
+# test data
+data/
+# sqlite databases
+*.db
+
+# config files
+*.toml
+!*.tpl.toml
+
+# project
+!pyproject.toml
+uv.lock
+.pytest_cache/
+.ruff_cache/
+
+# Build artifacts
+__pycache__/
+*.py[oc]
+dist/
+build/
+sdist/
+target/
+wheels/
+*.log
+*.egg-info
+
+# env var
+.env
+
+# Virtualenvs
+.venv
+env/
+venv/
+env.bak/
+venv.bak/

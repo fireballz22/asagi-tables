@@ -1,0 +1,25 @@
+[db]
+db_type = 'mysql' # mysql, sqlite, postgresql
+echo = false # print rendered sql statements to console
+
+[db.mysql] # follow pymysql/aiomysql connection keys
+host = '127.0.0.1' # comment out host & port if using unix_socket and vice-versa
+port = 3306
+# unix_socket = '/var/run/mysqld/mysqld.sock'
+db = 'asagi'
+user = 'asagi'
+password = 'asagi'
+minsize = 1
+maxsize = 50
+
+[db.sqlite] # follow aiosqlite connection keys
+database = 'path/to/file.db'
+
+[db.postgresql] # follow asyncpg connection keys
+host = 'localhost' # also used for unix domain socket
+port = 5432
+user = 'asagi'
+password = 'asagi'
+database = 'asagi'
+min_size = 1
+max_size = 50

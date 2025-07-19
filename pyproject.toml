@@ -1,0 +1,77 @@
+[project]
+name = 'asagi_tables'
+version = '0.1.0'
+license = 'GPL-3.0-or-later'
+description = 'Asagi table management'
+readme = 'README.md'
+requires-python = '>=3.12'
+authors = [
+	# { name = 'Name', email = 'author@example.com' },
+]
+dependencies = [
+	'tqdm', # side table populate can take a while
+]
+
+[project.optional-dependencies]
+dev = [
+	'ruff',
+	'pytest',
+]
+mysql = [
+	'aiomysql',
+	'cryptography', # ssl required for tcp by default now
+]
+sqlite = [
+	'aiosqlite',
+]
+postgresql = [
+	'asyncpg',
+]
+
+[project.scripts]
+asagi = 'asagi_tables.main:run'
+
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.packages.find]
+where = ['src']
+
+[tool.uv]
+package = true
+compile-bytecode = true
+
+[tool.ruff]
+target-version = 'py312'
+line-length = 65535
+src = ['src', 'test']
+
+[tool.ruff.lint]
+preview = true
+select = []
+ignore = [
+	'E501',
+]
+extend-select = [
+	'E225',
+	'W292',
+]
+fixable = ['ALL']
+unfixable = []
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+indent-style = 'tab'
+line-ending = 'lf'
+skip-magic-trailing-comma = true
+docstring-code-format = false
+docstring-code-line-length = 65535
+
+[tool.pytest.ini_options]
+testpaths = [
+	'tests',
+]
+pythonpath = 'src/asagi_tables'
+addopts = '--capture=no'
