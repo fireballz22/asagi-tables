@@ -9,13 +9,15 @@ authors = [
 	# { name = 'Name', email = 'author@example.com' },
 ]
 dependencies = [
-	'tqdm', # side table populate can take a while
 ]
 
 [project.optional-dependencies]
 dev = [
 	'ruff',
 	'pytest',
+]
+cli = [
+	'tqdm', # side table populate can take a while
 ]
 mysql = [
 	'aiomysql',
