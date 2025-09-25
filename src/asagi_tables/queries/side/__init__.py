@@ -10,7 +10,7 @@ backup_suffix = BACKUP_SUFFIX
 sidetables = ('daily', 'deleted', 'images', 'threads', 'users')
 
 table_indexes = dict(
-	thread=(
+	threads=(
 		TI('time_op_index', ['time_op']),
 		TI('time_bump_index', ['time_bump']),
 		TI('time_ghost_bump_index', ['time_ghost_bump']),
